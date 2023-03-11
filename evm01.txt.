@@ -4,29 +4,30 @@ https://www.ethervm.io/. >> opcode EVM
 
 Function signature >> https://emn178.github.io/online-tools/keccak_256.html
 Function signature are first 4 bytes of ur keccak-256 hash function , u can copy paste your function in the above to get the keccak-256.
- When you call a function in a smart contract, you include the function signature as part of the transaction data, along with any input parameters
+When you call a function in a smart contract, you include the function signature as part of the transaction data, along with any input parameters
 
 calldata is a special type of memory space that is used to store function arguments and other data that is passed into a contract when it is called
 
-PUSH1 0x00      -  pushes 1 byte of data ie it pushes 0 on to the call stack {0x00 corresponds to  0}
+PUSH1 0x00    -  pushes 1 byte of data ie it pushes 0 on to the call stack {0x00 corresponds to  0}
 
-CALLDATALOAD     -  calldataload pops of the previous value  
+CALLDATALOAD-calldataload pops of the previous value  
 
 NOTE : The call stack in then EVM only encourages 32 bytes 
 
-PUSH1 0xe0            - it pushes 224 which your hex value since 0xe0 represents 224 in hex
+PUSH1         - it pushes 224 which your hex value since 0xe0 represents 224 in hex
 
-SHR                          -  bit shift right takes 224 as your does a BSR on the prev data in call stack
+SHR           - bit shift right takes 224 as your does a BSR on the prev data in call stack
 
-DUP1                        - duplicates the prev data on stack
+DUP1          - duplicates the prev data on stack
 
-Push4                       -  pushes 4 bytes of function signature 
+Push4-pushes 4 bytes of function signature 
 
-EQ - pops of two values of the stack checks if they are equal, if they are equal then pushes 1 to the stack if not pushes a 0
+EQ            - pops of two values of the stack checks if they are equal, if they are equal then pushes 1 to the stack if not pushes a 0
 
-Push2  - pushes two bytes of data 
+Push2         - pushes two bytes of data 
 
-JUMPI  - pops 2 values of the stack and the first one is the program counter say 20  and the second one being boolean (if a jump is required or nah !!! ).  it will move the execution to different part of the byte code 
+JUMPI         - pops 2 values of the stack and the first one is the program counter say 20  and the second one being boolean (if a jump is required or nah !!! ).  it will move the execution to different part of the byte code 
 
-DUP1 = duplicates the prev data in call stack
-PUSH4 - pushes 4 bytes
+DUP1          - duplicates the prev data in call stack
+
+PUSH4         - pushes 4 bytes
